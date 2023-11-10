@@ -1,5 +1,7 @@
 .idea
 .terraform
 
+.terraform.lock.hcl
 provider.tf
 terraform.*
+variables.tfvars
