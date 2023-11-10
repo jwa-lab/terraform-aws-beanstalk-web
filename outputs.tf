@@ -9,3 +9,7 @@ output "instance_role" {
 output "load_balancer_arn" {
   value = module.beanstalk.beanstalk_env.load_balancers[0]
 }
+
+output "beanstalk_env_cname" {
+  value = module.beanstalk.beanstalk_env.cname
+}
