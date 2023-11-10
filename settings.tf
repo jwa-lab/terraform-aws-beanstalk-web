@@ -18,7 +18,7 @@ locals {
     {
       namespace = "aws:autoscaling:launchconfiguration"
       name = "IamInstanceProfile"
-      value = aws_iam_instance_profile.beanstalk_instances_profile.name
+      value = module.beanstalk.instance_role.name
     },
     {
       namespace = "aws:autoscaling:launchconfiguration"
