@@ -97,34 +97,3 @@ module "beanstalk" {
 
   beanstalk_env_vars = var.webserver_env_vars
 }
-
-resource "aws_elastic_beanstalk_environment" "beanstalk_env" {
-  name = var.beanstalk_env_name
-  application = var.beanstalk_app_name
-  cname_prefix = var.beanstalk_env_name
-  description = "WebServer environment for ${var.beanstalk_app_name}"
-  tier = "WebServer"
-  solution_stack_name = var.solution_stack_name
-
-  dynamic "setting" {
-    for_each = local.beanstalk_settings
-
-    content {
-      namespace = setting.value["namespace"]
-      name = setting.value["name"]
-      value = setting.value["value"]
-      resource = ""
-    }
-  }
-
-  dynamic "setting" {
-    for_each = var.webserver_env_vars
-
-    content {
-      namespace = "aws:elasticbeanstalk:application:environment"
-      name = setting.value["name"]
-      value = setting.value["value"]
-      resource = ""
-    }
-  }
-}
